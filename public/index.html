@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Native Days Italy</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      background: #ffffff;
+      color: #0b3d91;
+      text-align: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+    img.logo {
+      max-width: min(520px, 80vw);
+      height: auto;
+      display: block;
+    }
+    img.docker {
+      max-width: min(260px, 50vw);
+      height: auto;
+      display: block;
+    }
+    h1 {
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+  <img class="logo" src="cndit.png" alt="Cloud Native Days Italy logo" />
+  <h1>Whalecome to the Docker Workshop</h1>
+  <img class="docker" src="docker.png" alt="Docker logo" />
+</body>
+</html>

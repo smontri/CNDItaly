@@ -1,0 +1,12 @@
+{
+  "name": "cndit-welcome",
+  "version": "1.0.0",
+  "description": "Welcome page for Cloud Native Days Italy",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
