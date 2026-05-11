@@ -33,6 +33,15 @@
       height: auto;
       display: block;
     }
+    .base-image {
+      font-size: 0.95rem;
+      color: #4a5b7a;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      margin-top: -0.5rem;
+    }
+    .base-image strong {
+      color: #0b3d91;
+    }
     h1 {
       font-size: clamp(1.6rem, 4.5vw, 3rem);
       font-weight: 600;
@@ -44,6 +53,13 @@
 <body>
   <img class="logo" src="cndit.png" alt="Cloud Native Days Italy logo" />
   <h1>Whalecome to the Docker Workshop</h1>
-  <img class="docker" src="docker.png" alt="Docker logo" />
+  <img class="docker" src="docker2.png" alt="Docker logo" />
+  <p class="base-image">Base image: <strong id="base-image">loading…</strong></p>
+  <script>
+    fetch('/api/info')
+      .then((r) => r.json())
+      .then((d) => { document.getElementById('base-image').textContent = d.baseImage; })
+      .catch(() => { document.getElementById('base-image').textContent = 'unavailable'; });
+  </script>
 </body>
 </html>

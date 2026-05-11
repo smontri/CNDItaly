@@ -10,9 +10,12 @@ RUN npm ci --omit=dev && npm cache clean --force
 
 FROM dhi.io/node:22
 
+ARG BASE_IMAGE=dhi.io/node:22
+
 WORKDIR /app
 
 ENV NODE_ENV=production
+ENV BASE_IMAGE=${BASE_IMAGE}
 
 COPY --from=deps --chown=node:node /app/node_modules ./node_modules
 COPY --chown=node:node package.json ./
