@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE: stephaemontri134/cnditaly
+  IMAGE: stephanemontri134/cnditaly
 
 jobs:
   build:
