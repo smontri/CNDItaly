@@ -75,3 +75,12 @@ jobs:
           name: scout-cves-sarif
           path: scout-results.sarif
           if-no-files-found: error
+
+      - name: Fail on critical CVEs
+        if: github.event_name != 'pull_request'
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          only-severities: critical
+          exit-code: true
