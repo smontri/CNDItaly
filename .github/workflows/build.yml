@@ -49,6 +49,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push
+        id: build
         uses: docker/build-push-action@v6
         with:
           context: .
@@ -57,3 +58,20 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Docker Scout CVE analysis
+        if: github.event_name != 'pull_request'
+        uses: docker/scout-action@v1
+        with:
+          command: cves
+          image: ${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          sarif-file: scout-results.sarif
+          summary: true
+
+      - name: Upload Scout SARIF artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: scout-cves-sarif
+          path: scout-results.sarif
+          if-no-files-found: error
