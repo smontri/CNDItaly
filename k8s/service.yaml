@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cndit
+  labels:
+    app: cndit
+spec:
+  type: LoadBalancer
+  selector:
+    app: cndit
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8081

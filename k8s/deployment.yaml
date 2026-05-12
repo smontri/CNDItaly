@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cndit
+  labels:
+    app: cndit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cndit
+  template:
+    metadata:
+      labels:
+        app: cndit
+    spec:
+      containers:
+        - name: cndit
+          image: ${IMAGE}
+          ports:
+            - containerPort: 8081
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8081
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
